@@ -9,9 +9,28 @@ namespace Test_Auth0
     {
         public static void Main(string[] args)
         {
+            const string corsPolicy = "MyCorsPolicy";
+
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers();
+
+            builder.Services.AddCors(setupActions =>
+            {
+                setupActions.AddPolicy(corsPolicy, policy =>
+                {
+                    // policy.AllowAnyOrigin()
+                    policy.WithOrigins(new string[]
+                           {
+                                "http://localhost:4200/"
+                           })
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .AllowCredentials(); 
+                    //The CORS protocol does not allow specifying a wildcard (any) origin and credentials at the same time.
+                    //Configure the CORS policy by listing individual origins if credentials needs to be supported.
+                });
+            });
 
             //👇 new code
             builder.Services.AddAuthentication(options =>
@@ -67,6 +86,8 @@ namespace Test_Auth0
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(corsPolicy);
 
             app.UseAuthentication();  //👈 new code
 
