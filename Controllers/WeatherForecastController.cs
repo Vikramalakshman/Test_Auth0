@@ -1,8 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;  //👈 new code
 
 namespace Test_Auth0.Controllers
 {
     [ApiController]
+    [Authorize] //👈 new code
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
