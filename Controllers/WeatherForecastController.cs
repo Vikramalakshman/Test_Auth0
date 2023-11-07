@@ -31,5 +31,13 @@ namespace Test_Auth0.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("CheckAnonymous")]
+        public string CheckAnonymous()
+        {
+            return "You are an anonymous user!";
+        }
     }
 }
