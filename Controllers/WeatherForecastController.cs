@@ -10,8 +10,8 @@ namespace Test_Auth0.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
 
@@ -37,7 +37,7 @@ namespace Test_Auth0.Controllers
         [Route("CheckAnonymous")]
         public string CheckAnonymous()
         {
-            return "You are an anonymous user!";
+            return "You are an anonymous user! So, you are not required to be authenticated to access this method";
         }
     }
 }
